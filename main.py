@@ -16,10 +16,10 @@ class Scheme:
 
 
 class Parser:
-    scheme:Scheme
+    scheme: Scheme
     coll: dict[str, list[any]]
 
-    def __init__(self, scheme:Scheme):
+    def __init__(self, scheme: Scheme):
         self.coll = {}
         self.scheme = scheme
 
@@ -77,7 +77,7 @@ def validate_date(date: str):
         raise argparse.ArgumentTypeError(msg)
 
 
-def create_scheme(report: str | None = None, date:str | None = None) -> Scheme:
+def create_scheme(report: str | None = None, date: str | None = None) -> Scheme:
     match report:
         case "average":
             res = create_avg_scheme()
@@ -132,7 +132,7 @@ def read_file_by_line(path: str):
             yield json.loads(row.strip())
 
 
-def print_report(data:list[any], scheme: Scheme):
+def print_report(data: list[any], scheme: Scheme):
     values = scheme.sorting(data) if scheme.sorting else data
     tbl = tabulate(values, scheme.headers, showindex="always", floatfmt=".3f")
     print(tbl)
