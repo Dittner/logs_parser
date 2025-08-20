@@ -10,6 +10,7 @@ lint.ignore = [
     "ANN201", # Missing return type annotation for public function
     "ANN202", # Missing return type annotation for private function
     "ANN204", # Missing return type annotation for special method
+    "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
     "COM812", # To avoid unexpected behavior
     "RET505", # superfluous-else-return
     "T201", # remove-print

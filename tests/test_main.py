@@ -1,5 +1,6 @@
 import sys
 import os
+from typing import Any
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from main import Scheme, Parser, create_scheme
@@ -12,7 +13,7 @@ def test_parser():
         {"a": 1, "b": 100, "d": "2025-07-30"},
     ]
 
-    def reduce(log_akk: any, log: any):
+    def reduce(log_akk: Any, log: Any):
         if log_akk:
             count = log_akk[2]
             log_akk[0] = log["a"]

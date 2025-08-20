@@ -3,6 +3,7 @@ import json
 import re
 from collections.abc import Callable, Iterable
 from pathlib import Path
+from typing import Any
 
 from tabulate import tabulate
 
@@ -17,7 +18,7 @@ class Scheme:
 
 class Parser:
     scheme: Scheme
-    coll: dict[str, list[any]]
+    coll: dict[str, list[Any]]
 
     def __init__(self, scheme: Scheme):
         self.coll = {}
@@ -90,7 +91,7 @@ def create_scheme(report: str | None = None, date: str | None = None) -> Scheme:
 
 
 def create_def_scheme() -> Scheme:
-    def reduce(log_akk: any, log: any):
+    def reduce(log_akk: Any, log: Any):
         if log_akk:
             log_akk[1] += 1
             log_akk[2] += log["response_time"]
@@ -107,7 +108,7 @@ def create_def_scheme() -> Scheme:
 
 
 def create_avg_scheme() -> Scheme:
-    def reduce(log_akk: any, log: any):
+    def reduce(log_akk: list | None, log: Any):
         if log_akk:
             n = log_akk[1]
             log_akk[1] += 1
@@ -132,7 +133,7 @@ def read_file_by_line(path: str):
             yield json.loads(row.strip())
 
 
-def print_report(data: list[any], scheme: Scheme):
+def print_report(data: list[Any], scheme: Scheme):
     values = scheme.sorting(data) if scheme.sorting else data
     tbl = tabulate(values, scheme.headers, showindex="always", floatfmt=".3f")
     print(tbl)
